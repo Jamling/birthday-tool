@@ -31,10 +31,14 @@ body {
 .vspace {
   padding: .5em;
 }
+#result {
+  display: none;
+}
 </style>
 <script>
   var dp;
   function calc() {
+    moment.locale('zh-CN');
     var str = $('#birthday').val();
     var birth = moment(str, 'YYYY年M月D日HH点mm分');
     var start = moment('1970-01-01');
@@ -44,7 +48,7 @@ body {
     //console.log(dayCol);
     var lunar = calendar.solar2lunar(birth.year(), birth.month() + 1, birth.date());
     //console.log(lunar);
-    $('#o-solar').html(birth.format('YYYY年M月D日HH时'));
+    $('#o-solar').html(birth.format('YYYY年M月D日HH点 dddd'));
     $('#o-lunar')
         .html(lunar.lYear + '年' + lunar.lMonth + '月' + lunar.lDay + '日(' + lunar.IMonthCn + lunar.IDayCn + ')');
     var dayStems = lunar.gzDay.substring(0, 1);
@@ -63,6 +67,7 @@ body {
       lose = ' 缺' + lose;
     }
     $('#o-five').html(allfive + lose);
+    $('#result').show();
   }
 
   $(document).ready(function() {
@@ -85,7 +90,7 @@ body {
           <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
             class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">农历工具</a>
+        <a class="navbar-brand" href="#">生辰助手</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -110,15 +115,16 @@ body {
       </h1>
     </div>
     <div class='input-group date col-md-5' id='datetimepicker1'>
-      <span class="input-group-addon">出生年月：</span> <input type='text' class="form-control" id="birthday" /> <span
-        class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span>
-      </span> <span class="input-group-btn">
-        <button class="btn btn-default" onclick="calc();">计算</button>
+      <span class="input-group-addon">
+       <span class="glyphicon glyphicon-time"></span> 生辰</span>
+      <input type='text' class="form-control" id="birthday" />
+      <span class="input-group-btn">
+        <button class="btn btn-default" onclick="calc();">测试</button>
       </span>
     </div>
     <div class="col-md-6" style="padding-left: 0;">
       <div class="vspace"></div>
-      <div class="panel panel-success">
+      <div class="panel panel-success" id="result">
         <div class="panel-heading">
           <h3 class="panel-title">查询结果</h3>
         </div>

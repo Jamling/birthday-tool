@@ -1,7 +1,7 @@
 # 生辰小助手
 一个实用的生辰八字计算小工具，输入生辰日期时间（阳历），然后自动计算出八字，五行等信息。
 
-[点击这里](https://jamling.github.io/birthday-tool/)体验吧。
+[点击这里](http://jamling.coding.me/birthday-tool/)体验吧。
 
 # 注意
 - 输入的日期为阳历，需精确到小时
