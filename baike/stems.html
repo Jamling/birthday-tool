@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh"
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+<head>
+<meta charset="utf-8">
+<title>生辰小助手</title>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="生辰八字,五行属相,起名指引">
+<meta name="description" content="免费生辰八字查询,免费五行查询">
+
+<!-- Alternative links -->
+<!-- CSS and JS-->
+<script src="//cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="//cdn.bootcss.com/moment.js/2.15.2/moment-with-locales.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.43/js/bootstrap-datetimepicker.min.js"></script>
+<link href="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.43/css/bootstrap-datetimepicker.min.css"
+  rel="stylesheet">
+  <style>
+    .style1 {
+      color:red;font-weight:bold;
+    }
+    table td, table th{
+      vertical-align: middle !important;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+            class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">生辰助手</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="../index.html">生辰八字</a></li>
+          <li><a href="../name.html">起名</a></li>
+          <li class="active"><a href="#">小百科</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="https://jamling.github.io/birthday-tool/">Github</a></li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+  <div class="container">
+    <div class="page-header">
+      <h1>
+        知识小百科 <small>农历、节气、五行</small>
+      </h1>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-3">
+        <div class="list-group">
+          <a class="list-group-item" href="./index.html">农历历法</a>
+          <a class="list-group-item" href="./solar-terms.html">二十四节气</a>
+          <a class="list-group-item active" href="./stems.html"> 天干地支</a>
+          <a class="list-group-item" href="./element.html">阴阳五行</a>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-9">
+        <div class="article">
+          <div class="page-header hidden">
+            <h3>农历历法</h3>
+          </div>
+          <div class="article-content">
+            <div class="page-header hidden">
+              <h1>天干和地支<small>(干支)</small></h1>
+            </div>
+            <div>天干和地支合称干支，它是农历历法纪年、月、日的基础。</div>
+            <h2>天干</h2>
+            <span>天干共有十个，分别是：</span><span class="style1">甲、乙、丙、丁、戊、己、庚、辛、壬、癸</span>
+            <h2>地支</h2>
+            <span>地支共有十二个，分别是：</span><span class="style1">子、丑、寅、卯、辰、巳、午、未、申、酉、戌、亥</span>
+            <h2>六十干支表</h2>
+            <div>天干和地支组合便成为以「甲子」为首的六十干支循环(表二)。</div>
+              <table title="六十干支表" class="table table-bordered table-hover">
+                <caption>表二：六十干支表</caption>
+                <tbody>
+                  <tr>
+                    <th>#</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th>10</th>
+                    <th>11</th>
+                    <th>12</th>
+                  </tr>
+                  <tr>
+                    <th>1</th>
+                    <td>甲子</td>
+                    <td>乙丑</td>
+                    <td>丙寅</td>
+                    <td>丁卯</td>
+                    <td>戊辰</td>
+                    <td>己巳</td>
+                    <td>庚午</td>
+                    <td>辛未</td>
+                    <td>壬申</td>
+                    <td>癸酉</td>
+                    <td>甲戌</td>
+                    <td>乙亥</td>
+                  </tr>
+                  <tr>
+                    <th>2</th>
+                    <td>丙子</td>
+                    <td>丁丑</td>
+                    <td>戊寅</td>
+                    <td>己卯</td>
+                    <td>庚辰</td>
+                    <td>辛巳</td>
+                    <td>壬午</td>
+                    <td>癸未</td>
+                    <td>甲申</td>
+                    <td>乙酉</td>
+                    <td>丙戌</td>
+                    <td>丁亥</td>
+                  </tr>
+                  <tr>
+                    <th>3</th>
+                    <td>戊子</td>
+                    <td>己丑</td>
+                    <td>庚寅</td>
+                    <td>辛卯</td>
+                    <td>壬辰</td>
+                    <td>癸巳</td>
+                    <td>甲午</td>
+                    <td>乙未</td>
+                    <td>丙申</td>
+                    <td>丁酉</td>
+                    <td>戊戌</td>
+                    <td>己亥</td>
+                  </tr>
+                  <tr>
+                    <th>4</th>
+                    <td>庚子</td>
+                    <td>辛丑</td>
+                    <td>壬寅</td>
+                    <td>癸卯</td>
+                    <td>甲辰</td>
+                    <td>乙巳</td>
+                    <td>丙午</td>
+                    <td>丁未</td>
+                    <td>戊申</td>
+                    <td>己酉</td>
+                    <td>庚戌</td>
+                    <td>辛亥</td>
+                  </tr>
+                  <tr>
+                    <th>5</th>
+                    <td>壬子</td>
+                    <td>癸丑</td>
+                    <td>甲寅</td>
+                    <td>乙卯</td>
+                    <td>丙辰</td>
+                    <td>丁巳</td>
+                    <td>戊午</td>
+                    <td>己未</td>
+                    <td>庚申</td>
+                    <td>辛酉</td>
+                    <td>壬戌</td>
+                    <td>癸亥</td>
+                  </tr>
+                </tbody>
+             </table>
+             <div>历史上以干支纪年、纪月、纪日和纪时的起始年代各不相同。
+            干支纪年和纪日已使用了二、三千年。月份和时辰本来只与十二地支配对(图一和表三)，后来人们根据年干订定月干(表四)，又根据日干订定时干
+            (表五)，把年、月、日、时的干支合成八字。
+            </div>
+            <div>
+            <table title="十二辰和现今时间的对应关系" class="table table-bordered table-striped">
+              <caption>表三：十二辰和现今时间的对应关系</caption>
+              <tbody>
+                <tr>
+                  <th>十二辰</th>
+                  <th>现今时间</th>
+                </tr>
+                <tr>
+                  <td>子时</td>
+                  <td>23时至01时</td>
+                </tr>
+                <tr>
+                  <td>丑时</td>
+                  <td>01时至03时</td>
+                </tr>
+                <tr>
+                  <td>寅时</td>
+                  <td>03时至05时</td>
+                </tr>
+                <tr>
+                  <td>卯时</td>
+                  <td>05时至07时</td>
+                </tr>
+                <tr>
+                  <td>辰时</td>
+                  <td>07时至09时</td>
+                </tr>
+                <tr>
+                  <td>巳时</td>
+                  <td>09时至11时</td>
+                </tr>
+                <tr>
+                  <td>午时</td>
+                  <td>11时至13时</td>
+                </tr>
+                <tr>
+                  <td>未时</td>
+                  <td>13时至15时</td>
+                </tr>
+                <tr>
+                  <td>申时</td>
+                  <td>15时至17时</td>
+                </tr>
+                <tr>
+                  <td>酉时</td>
+                  <td>17时至19时</td>
+                </tr>
+                <tr>
+                  <td>戌时</td>
+                  <td>19时至21时</td>
+                </tr>
+                <tr>
+                  <td>亥时</td>
+                  <td>21时至23时</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table  title="年干和月干的对应关系" class="table table-bordered">
+              <caption>表四：年干和月干的对应关系</caption>
+                <tbody>
+                  <tr>
+                    <th rowspan="2">年干</th>
+                    <th colspan="12">月干</th>
+                  </tr>
+                    <tr>
+                        <td>寅月<br> (一月) </td>
+                        <td>                        卯月<br>                        (二月)                        </td>
+                        <td>                        辰月<br>                        (三月)                        </td>
+                        <td>                        巳月<br>                        (四月)                        </td>
+                        <td>                        午月<br>                        (五月)                        </td>
+                        <td>                        未月<br>                        (六月)                        </td>
+                        <td>                        申月<br>                        (七月)                        </td>
+                        <td>                        酉月<br>                        (八月)                        </td>
+                        <td>                        戌月<br>                        (九月)                        </td>
+                        <td>                        亥月<br>                        (十月)                        </td>
+                        <td>                        子月<br>                        (冬月)                        </td>
+                        <td>                        丑月<br>                        (腊月)                        </td>
+                    </tr>
+                    <tr>
+                        <td>                        甲或己                        </td>
+                        <td>丙</td>
+                        <td>丁</td>
+                        <td>戊</td>
+                        <td>己</td>
+                        <td>庚</td>
+                        <td>辛</td>
+                        <td>壬</td>
+                        <td>癸</td>
+                        <td>甲</td>
+                        <td>乙</td>
+                        <td>丙</td>
+                        <td>丁</td>
+                    </tr>
+                    <tr>
+                        <td>                        乙或庚                        </td>
+                        <td>戊</td>
+                        <td>己</td>
+                        <td>庚</td>
+                        <td>辛</td>
+                        <td>壬</td>
+                        <td>癸</td>
+                        <td>甲</td>
+                        <td>乙</td>
+                        <td>丙</td>
+                        <td>丁</td>
+                        <td>戊</td>
+                        <td>己</td>
+                    </tr>
+                    <tr>
+                        <td>                        丙或辛                        </td>
+                        <td>庚</td>
+                        <td>辛</td>
+                        <td>壬</td>
+                        <td>癸</td>
+                        <td>甲</td>
+                        <td>乙</td>
+                        <td>丙</td>
+                        <td>丁</td>
+                        <td>戊</td>
+                        <td>己</td>
+                        <td>庚</td>
+                        <td>辛</td>
+                    </tr>
+                    <tr>
+                        <td>                        丁或壬                        </td>
+                        <td>壬</td>
+                        <td>癸</td>
+                        <td>甲</td>
+                        <td>乙</td>
+                        <td>丙</td>
+                        <td>丁</td>
+                        <td>戊</td>
+                        <td>己</td>
+                        <td>庚</td>
+                        <td>辛</td>
+                        <td>壬</td>
+                        <td>癸</td>
+                    </tr>
+                    <tr>
+                        <td>                        戊或癸                        </td>
+                        <td>甲</td>
+                        <td>乙</td>
+                        <td>丙</td>
+                        <td>丁</td>
+                        <td>戊</td>
+                        <td>己</td>
+                        <td>庚</td>
+                        <td>辛</td>
+                        <td>壬</td>
+                        <td>癸</td>
+                        <td>甲</td>
+                        <td>乙</td>
+                    </tr>
+            </tbody></table>
+
+            <table title="日干和时干的对应关系" class="table table-bordered table-responsive">
+              <caption>表五： 日干和时干的对应关系</caption>
+                    <tbody><tr>
+                        <th rowspan="2">
+                        日干
+                      </th>
+                        <th colspan="12">
+                        时干
+                      </th>
+                    </tr>
+                    <tr>
+                        <td>
+                        子时
+                        </td>
+                        <td>
+                        丑时
+                        </td>
+                        <td>
+                        寅时
+                        </td>
+                        <td>
+                        卯时
+                        </td>
+                        <td>
+                        辰时
+                        </td>
+                        <td>
+                        巳时
+                        </td>
+                        <td>
+                        午时
+                        </td>
+                        <td>
+                        未时
+                        </td>
+                        <td>
+                        申时
+                        </td>
+                        <td>
+                        酉时
+                        </td>
+                        <td>
+                        戌时
+                        </td>
+                        <td>
+                        亥时
+                        </td>
+                    </tr>
+                    <tr >
+                        <td>
+                        甲或己
+                        </td>
+                        <td>甲</td>
+                        <td>乙</td>
+                        <td>丙</td>
+                        <td>丁</td>
+                        <td>戊</td>
+                        <td>己</td>
+                        <td>庚</td>
+                        <td>辛</td>
+                        <td>壬</td>
+                        <td>癸</td>
+                        <td>甲</td>
+                        <td>乙</td>
+                    </tr>
+                    <tr>
+                        <td>                        乙或庚                        </td>
+                        <td>丙</td>
+                        <td>丁</td>
+                        <td>戊</td>
+                        <td>己</td>
+                        <td>庚</td>
+                        <td>辛</td>
+                        <td>壬</td>
+                        <td>癸</td>
+                        <td>甲</td>
+                        <td>乙</td>
+                        <td>丙</td>
+                        <td>丁</td>
+                    </tr>
+                    <tr>
+                        <td>                        丙或辛                        </td>
+                        <td>戊</td>
+                        <td>己</td>
+                        <td>庚</td>
+                        <td>辛</td>
+                        <td>壬</td>
+                        <td>癸</td>
+                        <td>甲</td>
+                        <td>乙</td>
+                        <td>丙</td>
+                        <td>丁</td>
+                        <td>戊</td>
+                        <td>己</td>
+                    </tr>
+                    <tr>
+                        <td>                        丁或壬                        </td>
+                        <td>庚</td>
+                        <td>辛</td>
+                        <td>壬</td>
+                        <td>癸</td>
+                        <td>甲</td>
+                        <td>乙</td>
+                        <td>丙</td>
+                        <td>丁</td>
+                        <td>戊</td>
+                        <td>己</td>
+                        <td>庚</td>
+                        <td>辛</td>
+                    </tr>
+                    <tr>
+                        <td>                        戊或癸                        </td>
+                        <td>壬</td>
+                        <td>癸</td>
+                        <td>甲</td>
+                        <td>乙</td>
+                        <td>丙</td>
+                        <td>丁</td>
+                        <td>戊</td>
+                        <td>己</td>
+                        <td>庚</td>
+                        <td>辛</td>
+                        <td>壬</td>
+                        <td>癸</td>
+                    </tr>
+            </tbody></table>
+
+                      <!--Content End-->
+                    </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

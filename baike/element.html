@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh"
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+<head>
+<meta charset="utf-8">
+<title>生辰小助手</title>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="生辰八字,五行属相,起名指引">
+<meta name="description" content="免费生辰八字查询,免费五行查询">
+
+<!-- Alternative links -->
+<!-- CSS and JS-->
+<script src="//cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="//cdn.bootcss.com/moment.js/2.15.2/moment-with-locales.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.43/js/bootstrap-datetimepicker.min.js"></script>
+<link href="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.43/css/bootstrap-datetimepicker.min.css"
+  rel="stylesheet">
+  <style>
+    .style1 {
+      color:red;font-weight:bold;
+    }
+    table td, table th{
+      vertical-align: middle !important;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+            class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">生辰助手</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="../index.html">生辰八字</a></li>
+          <li><a href="#">起名</a></li>
+          <li class="active"><a href="#">小百科</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="https://jamling.github.io/birthday-tool/">Github</a></li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+  <div class="container">
+    <div class="page-header">
+      <h1>
+        知识小百科 <small>农历、节气、五行</small>
+      </h1>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-3">
+        <div class="list-group">
+          <a class="list-group-item" href="./index.html">农历历法</a>
+          <a class="list-group-item" href="./solar-terms.html">二十四节气</a>
+          <a class="list-group-item" href="./stems.html"> 天干地支</a>
+          <a class="list-group-item active" href="./element.html">阴阳五行</a>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-9">
+        <div class="article">
+          <p>
+            阴阳五行，可分为“阴阳”与“五行”，然而两者互为辅成，五行必合阴阳，阴阳说必兼五行。阴阳五行是中国古典哲学的核心，为古代朴素的唯物哲学。阴阳，指世界上一切事物中都具有的两种既互相对立又互相联系的力量；五行即由“木、火、土、金、水”五种基本物质的运行和变化所构成，它强调整体概念。阴阳与五行两大学说的合流形成了中国传统思维的框架。
+          </p>
+          <p>
+            这里，山人只介绍天干地支与阴阳五行的关系
+          </p>
+          <div class="page-header">
+            <h3>干支与阴阳</h3>
+          </div>
+          <table class="table table-bordered">
+            <caption>阴阳与十天干</caption>
+            <tbody>
+              <tr>
+                <td>甲</td>
+                <td>乙</td>
+                <td>丙</td>
+                <td>丁</td>
+                  <td>戊</td>
+                  <td>己</td>
+                  <td>庚</td>
+                  <td>辛</td>
+                  <td>壬</td>
+                  <td>癸</td>
+              </tr>
+              <tr>
+                <td>阳</td>
+                <td>阴</td>
+                <td>阳</td>
+                <td>阴</td>
+                <td>阳</td>
+                <td>阴</td>
+                <td>阳</td>
+                <td>阴</td>
+                <td>阳</td>
+                <td>阴</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="table table-bordered">
+            <caption>阴阳与十二地支</caption>
+            <tbody>
+              <tr>
+                  <td>子</td>
+                  <td>丑</td>
+                  <td>寅</td>
+                  <td>卯</td>
+                  <td>辰</td>
+                  <td>巳</td>
+                  <td>午</td>
+                  <td>未</td>
+                  <td>申</td>
+                  <td>酉</td>
+                  <td>戌</td>
+                  <td>亥</td>
+              </tr>
+              <tr>
+                <td>阳</td>
+                <td>阴</td>
+                <td>阳</td>
+                <td>阴</td>
+                <td>阳</td>
+                <td>阴</td>
+                <td>阳</td>
+                <td>阴</td>
+                <td>阳</td>
+                <td>阴</td>
+                <td>阳</td>
+                <td>阴</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="page-header">
+            <h3>干支与五行</h3>
+          </div>
+          <table class="table table-bordered">
+            <caption>五行与十天干</caption>
+            <tbody>
+              <tr>
+                <td>甲</td>
+                <td>乙</td>
+                <td>丙</td>
+                <td>丁</td>
+                  <td>戊</td>
+                  <td>己</td>
+                  <td>庚</td>
+                  <td>辛</td>
+                  <td>壬</td>
+                  <td>癸</td>
+              </tr>
+              <tr>
+                <td>木</td>
+                <td>木</td>
+                <td>火</td>
+                <td>火</td>
+                <td>土</td>
+                <td>土</td>
+                <td>金</td>
+                <td>金</td>
+                <td>水</td>
+                <td>水</td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            记不住？小窍门：将木火土金水换成东，南，中，西，北。就很容易记住了
+          </div>
+
+          <table class="table table-bordered">
+            <caption>五行与十二地支</caption>
+            <tbody>
+              <tr>
+                  <td>子</td>
+                  <td>丑</td>
+                  <td>寅</td>
+                  <td>卯</td>
+                  <td>辰</td>
+                  <td>巳</td>
+                  <td>午</td>
+                  <td>未</td>
+                  <td>申</td>
+                  <td>酉</td>
+                  <td>戌</td>
+                  <td>亥</td>
+              </tr>
+              <tr>
+                <td>水</td>
+                <td>土</td>
+                <td>木</td>
+                <td>木</td>
+                <td>土</td>
+                <td>火</td>
+                <td>火</td>
+                <td>土</td>
+                <td>金</td>
+                <td>金</td>
+                <td>土</td>
+                <td>水</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
