@@ -27,7 +27,9 @@
 body {
   padding-top: 0px;
 }
-
+span.hl {
+  color:red;
+}
 .vspace {
   padding: .5em;
 }
@@ -54,8 +56,8 @@ body {
     var dayStems = lunar.gzDay.substring(0, 1);
     var hSection = StemsBranch.getHourStems(dayStems, birth.hour()) + StemsBranch.getHourBranch(birth.hour());
     $('#o-eight').html(
-        lunar.gzYear + ' ' + lunar.gzMonth + ' ' + lunar.gzDay + ' ' + hSection + ' 属'
-            + StemsBranch.getStemsElement(dayStems));
+        lunar.gzYear + ' ' + lunar.gzMonth + ' ' + lunar.gzDay + ' ' + hSection + ' 属<span class="hl">'
+            + StemsBranch.getStemsElement(dayStems)) + "</span>";
     var allfive = StemsBranch.getStemsBranchElement(lunar.gzYear) + ' '
         + StemsBranch.getStemsBranchElement(lunar.gzMonth) + ' ' + StemsBranch.getStemsBranchElement(lunar.gzDay) + ' '
         + StemsBranch.getStemsBranchElement(hSection);
@@ -64,7 +66,7 @@ body {
       lose = lose.replace(allfive.charAt(i), '');
     }
     if (lose.length > 0) {
-      lose = ' 缺' + lose;
+      lose = ' 缺<span class="hl">' + lose + '<span>';
     }
     $('#o-five').html(allfive + lose);
     $('#result').show();
@@ -116,17 +118,25 @@ body {
     </div>
     <div class='input-group date col-md-5' id='datetimepicker1'>
       <span class="input-group-addon">
-       <span class="glyphicon glyphicon-time"></span> 生辰</span>
+       <span class="glyphicon glyphicon-time"></span> 出生日期</span>
       <input type='text' class="form-control" id="birthday" />
       <span class="input-group-btn">
-        <button class="btn btn-default" onclick="calc();">测试</button>
+        <button class="btn btn-default" onclick="calc();">神机妙算</button>
       </span>
+    </div>
+    <div>
+      使用说明：
+      <ul>
+        <li>点击“<span class="glyphicon glyphicon-time"></span> 出生日期</span>”可以弹出日期控件</li>
+        <li>点击“神机妙算”，查看对应的生辰八字</li>
+        <li>出生日期精确到小时即可</li>
+      </ul>
     </div>
     <div class="col-md-6" style="padding-left: 0;">
       <div class="vspace"></div>
       <div class="panel panel-success" id="result">
         <div class="panel-heading">
-          <h3 class="panel-title">查询结果</h3>
+          <h3 class="panel-title">生辰八字</h3>
         </div>
         <div class="panel-body">
           <div>
