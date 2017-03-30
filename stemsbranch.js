@@ -36,11 +36,11 @@ var StemsBranch = {
 
   getHourStems: function(day, hour){
     var dIndex = StemsBranch.StemsTable.indexOf(day);
-    var hIndex = parseInt((parseInt(hour) + 1)/2);
+    var hIndex = parseInt((parseInt(hour) + 1)/2) % 12;
     return StemsBranch.HourStemsTable[dIndex % 5][hIndex];
   },
   getHourBranch: function(hour){
-    var hIndex = parseInt((parseInt(hour) + 1)/2);
+    var hIndex = parseInt((parseInt(hour) + 1)/2) % 12;
     return StemsBranch.HourBranchTable[hIndex];
   },
   getStemsElement: function(stems) {
