@@ -1,104 +1,99 @@
 <!DOCTYPE html>
 <html lang="zh"
-  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+      prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
 <head>
-<meta charset="utf-8">
-<title>生辰小助手</title>
-<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="keywords" content="生辰八字,五行属相,起名指引">
-<meta name="description" content="免费生辰八字查询,免费五行查询">
+    <meta charset="utf-8">
+    <title>生辰小助手</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="生辰八字,五行属相,起名指引">
+    <meta name="description" content="免费生辰八字查询,免费五行查询">
 
-<!-- Alternative links -->
-<!-- CSS and JS-->
-<script src="//cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
-<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="//cdn.bootcss.com/moment.js/2.15.2/moment-with-locales.min.js"></script>
-<script src="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.43/js/bootstrap-datetimepicker.min.js"></script>
-<link href="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.43/css/bootstrap-datetimepicker.min.css"
-  rel="stylesheet">
-  <style>
-    .style1 {
-      color:red;font-weight:bold;
-    }
-    table td, table th{
-      vertical-align: middle !important;
-      text-align: center;
-    }
-  </style>
+    <!-- Alternative links -->
+    <!-- CSS and JS-->
+    <script src="//cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="//cdn.bootcss.com/moment.js/2.15.2/moment-with-locales.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.43/js/bootstrap-datetimepicker.min.js"></script>
+    <link href="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.43/css/bootstrap-datetimepicker.min.css"
+          rel="stylesheet">
+    <style>
+        .style1 {
+            color: red;
+            font-weight: bold;
+        }
+
+        table td, table th {
+            vertical-align: middle !important;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-  <nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid container">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-          data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
-            class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="./index.html">生辰助手</a>
-      </div>
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="./index.html">生辰助手</a>
+        </div>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li><a href="./index.html">生辰八字</a></li>
-          <li class="active"><a href="./name.html">起名</a></li>
-          <li><a href="./baike/index.html">小百科</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="https://jamling.github.io/birthday-tool/">Github</a></li>
-        </ul>
-      </div>
-      <!-- /.navbar-collapse -->
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="./index.html">生辰八字</a></li>
+                <li class="active"><a href="./name.html">起名</a></li>
+                <li><a href="./baike/index.html">小百科</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://jamling.github.io/birthday-tool/">Github</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->
-  </nav>
-  <div class="container">
+</nav>
+<div class="container">
     <div class="page-header">
-      <h1>
-        起名<small>根据五行八字取名</small>
-      </h1>
+        <h1>
+            起名
+            <small>根据五行八字取名</small>
+        </h1>
     </div>
     <div class="article">
-      敬请期待，如需帮助，请联系本山人：13913316745。
+        敬请期待，如需帮助，请联系本山人：13913316745。
     </div>
-  </div>
-  <div class="container">
-    <div class="ds-share flat" data-thread-key="name.html" data-title="生辰助手" data-images="http://jamling.coding.me/birthday-tool/image.png" data-content="生辰八字,五行属相,起名指引" data-url="http://jamling.coding.me/birthday-tool/">
-      <div class="ds-share-inline">
-      <ul  class="ds-share-icons-16">
-
-        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-      </ul>
-      <div class="ds-share-icons-more">
-      </div>
+</div>
+<div class="container">
+    <div>
+        <!-- JiaThis Button BEGIN -->
+        <div class="jiathis_style">
+            <span class="jiathis_txt">分享到：</span>
+            <a class="jiathis_button_tools_1"></a>
+            <a class="jiathis_button_tools_2"></a>
+            <a class="jiathis_button_tools_3"></a>
+            <a class="jiathis_button_tools_4"></a>
+            <a href="http://www.jiathis.com/share?uid=2064663"
+               class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+            <a class="jiathis_counter_style"></a>
+        </div>
+        <script type="text/javascript">
+            var jiathis_config = {data_track_clickback: 'true'};
+        </script>
+        <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2064663" charset="utf-8"></script>
+        <!-- JiaThis Button END -->
     </div>
-    </div>
-    <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="name.html" data-title="生辰助手" data-url="http://jamling.coding.me/birthday-tool/"></div>
-    <!-- 多说评论框 end -->
-  </div>
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-  var duoshuoQuery = {short_name:"birthday-tool"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-       || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-    </script>
-  <!-- 多说公共JS代码 end -->
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2064663"></script>
+    <!-- UY END -->
+</div>
 </body>
 </html>

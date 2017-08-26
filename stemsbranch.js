@@ -54,5 +54,9 @@ var StemsBranch = {
   getStemsBranchElement: function(stemsbranch) {
     return StemsBranch.getStemsElement(stemsbranch.charAt(0)) + '' + StemsBranch.getBranchElement(stemsbranch.charAt(1));
   },
-  version: '1.0'
+  
+  getAnimal: function(stemsbranch) {
+    return StemsBranch.AnimalTable[StemsBranch.BranchTable.indexOf(stemsbranch.charAt(1))];
+  },
+  version: '1.1'
 }

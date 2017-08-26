@@ -1,193 +1,193 @@
 <!DOCTYPE html>
 <html lang="zh"
-  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+      prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
 <head>
-<meta charset="utf-8">
-<title>生辰小助手</title>
-<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="keywords" content="生辰八字,五行属相,起名指引">
-<meta name="description" content="免费生辰八字查询,免费五行查询">
+    <meta charset="utf-8">
+    <title>生辰小助手</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="生辰八字,五行属相,起名指引">
+    <meta name="description" content="免费生辰八字查询,免费五行查询">
 
-<!-- Alternative links -->
-<!-- CSS and JS-->
-<script src="//cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
-<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="//cdn.bootcss.com/moment.js/2.15.2/moment-with-locales.min.js"></script>
-<script src="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.43/js/bootstrap-datetimepicker.min.js"></script>
-<link href="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.43/css/bootstrap-datetimepicker.min.css"
-  rel="stylesheet">
-<!--
-<link href="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.43/css/bootstrap-datetimepicker-standalone.min.css" rel="stylesheet">-->
-<script type="text/javascript" src="./stemsbranch.js"></script>
-<script type="text/javascript" src="./calendar.js"></script>
-<style>
-body {
-  padding-top: 0px;
-}
-span.hl {
-  color:red;
-}
-.vspace {
-  padding: .5em;
-}
-#result {
-  display: none;
-}
-</style>
-<script>
-  var dp;
-  function calc() {
-    moment.locale('zh-CN');
-    var str = $('#birthday').val();
-    var birth = moment(str, 'YYYY年M月D日HH点mm分');
-    var start = moment('1970-01-01');
-    var days = birth.diff(start, 'days');
-    var offset = days + 17;
-    var dayCol = StemsBranch.StemsBranchTable[offset % 60];
-    //console.log(dayCol);
-    var lunar = calendar.solar2lunar(birth.year(), birth.month() + 1, birth.date());
-    //console.log(lunar);
-    $('#o-solar').html(birth.format('YYYY年M月D日HH点 dddd'));
-    $('#o-lunar')
-        .html(lunar.lYear + '年' + lunar.lMonth + '月' + lunar.lDay + '日(' + lunar.IMonthCn + lunar.IDayCn + ')');
-    var dayStems = lunar.gzDay.substring(0, 1);
-    var hSection = StemsBranch.getHourStems(dayStems, birth.hour()) + StemsBranch.getHourBranch(birth.hour());
-    $('#o-eight').html(
-        lunar.gzYear + ' ' + lunar.gzMonth + ' ' + lunar.gzDay + ' ' + hSection + ' 属<span class="hl">'
-            + StemsBranch.getStemsElement(dayStems)) + "</span>";
-    var allfive = StemsBranch.getStemsBranchElement(lunar.gzYear) + ' '
-        + StemsBranch.getStemsBranchElement(lunar.gzMonth) + ' ' + StemsBranch.getStemsBranchElement(lunar.gzDay) + ' '
-        + StemsBranch.getStemsBranchElement(hSection);
-    var lose = '金木水火土';
-    for (var i = 0; i < allfive.length; i++) {
-      lose = lose.replace(allfive.charAt(i), '');
-    }
-    if (lose.length > 0) {
-      lose = ' 缺<span class="hl">' + lose + '<span>';
-    }
-    $('#o-five').html(allfive + lose);
-    $('#result').show();
-  }
+    <!-- Alternative links -->
+    <!-- CSS and JS-->
+    <script src="//cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="//cdn.bootcss.com/moment.js/2.15.2/moment-with-locales.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.43/js/bootstrap-datetimepicker.min.js"></script>
+    <link href="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.43/css/bootstrap-datetimepicker.min.css"
+          rel="stylesheet">
+    <!--
+    <link href="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.43/css/bootstrap-datetimepicker-standalone.min.css" rel="stylesheet">-->
+    <script type="text/javascript" src="./stemsbranch.js"></script>
+    <script type="text/javascript" src="./calendar.js"></script>
+    <style>
+        body {
+            padding-top: 0px;
+        }
 
-  $(document).ready(function() {
-    dp = $('#datetimepicker1').datetimepicker({
-      locale : 'zh-CN',
-      minDate : moment('1970-01-01'),
-      maxDate : moment('2100-12-30'),
-      format : 'YYYY年M月D日HH点mm分'
-    });
-  });
-</script>
+        span.hl {
+            color: red;
+        }
+
+        .vspace {
+            padding: .5em;
+        }
+
+        #result {
+            display: none;
+        }
+    </style>
+    <script>
+        var dp;
+        function calc() {
+            moment.locale('zh-CN');
+            var str = $('#birthday').val();
+            var birth = moment(str, 'YYYY年M月D日HH点mm分');
+            var start = moment('1970-01-01');
+            var days = birth.diff(start, 'days');
+            var offset = days + 17;
+            var dayCol = StemsBranch.StemsBranchTable[offset % 60];
+            //console.log(dayCol);
+            var lunar = calendar.solar2lunar(birth.year(), birth.month() + 1, birth.date());
+            //console.log(lunar);
+            $('#o-solar').html(birth.format('YYYY年M月D日HH点 dddd'));
+            $('#o-lunar')
+                .html(lunar.lYear + '年' + lunar.lMonth + '月' + lunar.lDay + '日(' + lunar.IMonthCn + lunar.IDayCn + ')');
+            var dayStems = lunar.gzDay.substring(0, 1);
+            var hSection = StemsBranch.getHourStems(dayStems, birth.hour()) + StemsBranch.getHourBranch(birth.hour());
+            $('#o-animal').html('属<span class="hl">' + StemsBranch.getAnimal(lunar.gzDay) + '</span>');
+            $('#o-eight').html(
+                lunar.gzYear + ' ' + lunar.gzMonth + ' ' + lunar.gzDay + ' ' + hSection + ' 属<span class="hl">'
+                + StemsBranch.getStemsElement(dayStems)) + "</span>";
+            var allfive = StemsBranch.getStemsBranchElement(lunar.gzYear) + ' '
+                + StemsBranch.getStemsBranchElement(lunar.gzMonth) + ' ' + StemsBranch.getStemsBranchElement(lunar.gzDay) + ' '
+                + StemsBranch.getStemsBranchElement(hSection);
+            var lose = '金木水火土';
+            for (var i = 0; i < allfive.length; i++) {
+                lose = lose.replace(allfive.charAt(i), '');
+            }
+            if (lose.length > 0) {
+                lose = ' 缺<span class="hl">' + lose + '<span>';
+            }
+            $('#o-five').html(allfive + lose);
+            $('#result').show();
+        }
+
+        $(document).ready(function () {
+            dp = $('#datetimepicker1').datetimepicker({
+                locale: 'zh-CN',
+                minDate: moment('1970-01-01'),
+                maxDate: moment('2100-12-30'),
+                format: 'YYYY年M月D日HH点mm分'
+            });
+        });
+    </script>
 </head>
 <body>
-  <nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid container">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-          data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
-            class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="./index.html">生辰助手</a>
-      </div>
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="./index.html">生辰助手</a>
+        </div>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="./index.html">生辰八字</a></li>
-          <li><a href="./name.html">起名</a></li>
-          <li><a href="./baike/index.html">小百科</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="https://jamling.github.io/birthday-tool/">Github</a></li>
-        </ul>
-      </div>
-      <!-- /.navbar-collapse -->
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="./index.html">生辰八字</a></li>
+                <li><a href="./name.html">起名</a></li>
+                <li><a href="./baike/index.html">小百科</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://jamling.github.io/birthday-tool/">Github</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->
-  </nav>
-  <div class="container">
+</nav>
+<div class="container">
     <div class="page-header">
-      <h1>
-        生辰八字查询 <small>查询生辰八字，五行属性</small>
-      </h1>
+        <h1>
+            生辰八字查询
+            <small>查询生辰八字，五行属性</small>
+        </h1>
     </div>
     <div class='input-group date col-md-5' id='datetimepicker1'>
       <span class="input-group-addon">
        <span class="glyphicon glyphicon-time"></span> 出生日期</span>
-      <input type='text' class="form-control" id="birthday" />
-      <span class="input-group-btn">
+        <input type='text' class="form-control" id="birthday"/>
+        <span class="input-group-btn">
         <button class="btn btn-default" onclick="calc();">神机妙算</button>
       </span>
     </div>
     <div>
-      使用说明：
-      <ul>
-        <li>点击“<span class="glyphicon glyphicon-time"></span> 出生日期</span>”可以弹出日期控件</li>
-        <li>点击“神机妙算”，查看对应的生辰八字</li>
-        <li>出生日期精确到小时即可</li>
-		<li>出生日期须在1900-2100年之间（超过此时段，测算不准确哟）</li>
-      </ul>
+        使用说明：
+        <ul>
+            <li>点击“<span class="glyphicon glyphicon-time"></span> 出生日期</span>”可以弹出日期控件</li>
+            <li>点击“神机妙算”，查看对应的生辰八字</li>
+            <li>出生日期精确到小时即可</li>
+            <li>出生日期须在1900-2100年之间（超过此时段，测算不准确哟）</li>
+        </ul>
     </div>
     <div class="col-md-6" style="padding-left: 0;">
-      <div class="vspace"></div>
-      <div class="panel panel-success" id="result">
-        <div class="panel-heading">
-          <h3 class="panel-title">生辰八字</h3>
+        <div class="vspace"></div>
+        <div class="panel panel-success" id="result">
+            <div class="panel-heading">
+                <h3 class="panel-title">生辰八字</h3>
+            </div>
+            <div class="panel-body">
+                <div>
+                    <label>阳历：</label><span id="o-solar"></span>
+                </div>
+                <div>
+                    <label>阴历：</label><span id="o-lunar"></span>
+                </div>
+                <div>
+                    <label>生肖：</label><span id="o-animal"></span>
+                </div>
+                <div>
+                    <label>八字：</label><span id="o-eight"></span>
+                </div>
+                <div>
+                    <label>五行：</label><span id="o-five"></span>
+                </div>
+            </div>
         </div>
-        <div class="panel-body">
-          <div>
-            <label>阳历：</label><span id="o-solar"></span>
-          </div>
-          <div>
-            <label>阴历：</label><span id="o-lunar"></span>
-          </div>
-          <div>
-            <label>八字：</label><span id="o-eight"></span>
-          </div>
-          <div>
-            <label>五行：</label><span id="o-five"></span>
-          </div>
+    </div>
+</div>
+<div class="container">
+    <div>
+        <!-- JiaThis Button BEGIN -->
+        <div class="jiathis_style">
+            <span class="jiathis_txt">分享到：</span>
+            <a class="jiathis_button_tools_1"></a>
+            <a class="jiathis_button_tools_2"></a>
+            <a class="jiathis_button_tools_3"></a>
+            <a class="jiathis_button_tools_4"></a>
+            <a href="http://www.jiathis.com/share?uid=2064663"
+               class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+            <a class="jiathis_counter_style"></a>
         </div>
-      </div>
+        <script type="text/javascript">
+            var jiathis_config = {data_track_clickback: 'true'};
+        </script>
+        <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2064663" charset="utf-8"></script>
+        <!-- JiaThis Button END -->
     </div>
-  </div>
-  <div class="container">
-    <div class="ds-share flat" data-thread-key="index.html" data-title="生辰助手" data-images="http://jamling.coding.me/birthday-tool/image.png" data-content="生辰八字,五行属相,起名指引" data-url="http://jamling.coding.me/birthday-tool/">
-      <div class="ds-share-inline">
-      <ul  class="ds-share-icons-16">
-
-      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-      </ul>
-      <div class="ds-share-icons-more">
-      </div>
-    </div>
-    </div>
-    <!-- 多说评论框 start -->
-	  <div class="ds-thread" data-thread-key="index.html" data-title="生辰助手" data-url="http://jamling.coding.me/birthday-tool/"></div>
-    <!-- 多说评论框 end -->
-  </div>
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-  var duoshuoQuery = {short_name:"birthday-tool"};
-  	(function() {
-  		var ds = document.createElement('script');
-  		ds.type = 'text/javascript';ds.async = true;
-  		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-  		ds.charset = 'UTF-8';
-  		(document.getElementsByTagName('head')[0]
-  		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-  	})();
-  	</script>
-  <!-- 多说公共JS代码 end -->
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2064663"></script>
+    <!-- UY END -->
+</div>
 </body>
 </html>
