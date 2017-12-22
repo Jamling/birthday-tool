@@ -58,7 +58,7 @@
                 .html(lunar.lYear + '年' + lunar.lMonth + '月' + lunar.lDay + '日(' + lunar.IMonthCn + lunar.IDayCn + ')');
             var dayStems = lunar.gzDay.substring(0, 1);
             var hSection = StemsBranch.getHourStems(dayStems, birth.hour()) + StemsBranch.getHourBranch(birth.hour());
-            $('#o-animal').html('属<span class="hl">' + StemsBranch.getAnimal(lunar.gzDay) + '</span>');
+            $('#o-animal').html('属<span class="hl">' + StemsBranch.getAnimal(lunar.gzYear) + '</span>');
             $('#o-eight').html(
                 lunar.gzYear + ' ' + lunar.gzMonth + ' ' + lunar.gzDay + ' ' + hSection + ' 属<span class="hl">'
                 + StemsBranch.getStemsElement(dayStems)) + "</span>";
