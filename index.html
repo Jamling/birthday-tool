@@ -39,6 +39,15 @@
         #result {
             display: none;
         }
+
+        .c3 {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .c4 {
+            padding-left: 0;
+        }
     </style>
     <script>
         var dp;
@@ -66,8 +75,37 @@
             dp = $('#datetimepicker1').datetimepicker({
                 locale: 'zh-CN',
                 minDate: moment('1901-01-01'),
-                maxDate: moment('2100-12-30'),
+                maxDate: moment('2100-12-31'),
                 format: 'YYYY年M月D日HH点'
+            });
+
+            var m = '<option value="0">－请选择－</option>';
+            for (var y = 1901; y < 2100; y++) {
+                m += '<option value="' + y + '">' + y + '年</option>';
+            }
+            $("#year").html(m);
+            $("#year").change(function () {
+                var o = $(this).find("option:selected");
+                var v = parseInt(o.val());
+                var ss = o.text();
+                if (v > 0) {
+                    var str = $('#birthday').val();
+                    if (str) {
+                        $('#birthday').val(v + str.substr(4));
+                    } else {
+                        $('#birthday').val(ss + '1月1日00点');
+                    }
+                    //var d = moment($('#birthday').val(), 'YYYY年M月D日HH点');
+                    //dp.date(d);
+                    dp.show();
+                }
+            });
+            var today = moment();
+            $('#year').val(today.year());
+            $('#birthday').val(today.format('YYYY年M月D日HH点'));
+            $('#birthday').change(function () {
+                var s = $(this).val();
+                dp.date(moment(s, 'YYYY年M月D日HH点'));
             });
 
             $("#isLunar").change(function () {
@@ -126,7 +164,7 @@
                     if (data.code === 0) {
                         v2_callback(data.data)
                     } else {
-                        $('#o-five').html('<span class="hl">' + data.msg + '</span>');
+                        $('#result').html('<span class="hl">' + data.msg + '</span>');
                     }
                     $('#result').show();
                 }
@@ -136,7 +174,7 @@
         function v2_callback(data) {
             $('#o-solar').html(data.sYear + '年' + data.sMonth + '月' + data.sDay + '日' + data.sHour + '时 星期' + data.cWeek);
             $('#o-lunar')
-                .html(data.lYear + '年' + data.lMonth + '月' + data.lDay + '日(' + data.hzYear + '年' + data.hzMonth + '月' +data.hzDay + ')');
+                .html(data.lYear + '年' + data.lMonth + '月' + data.lDay + '日(' + data.hzYear + '年' + data.hzMonth + '月' + data.hzDay + ')');
             var dayStems = data.cDay.substring(0, 1);
             var hSection = data.cHour;//StemsBranch.getHourStems(dayStems, birth.hour()) + StemsBranch.getHourBranch(birth.hour());
             $('#o-animal').html('属<span class="hl">' + data.cAnimal + '</span>');
@@ -194,14 +232,48 @@
             <small>查询生辰八字，五行属性</small>
         </h1>
     </div>
-    <div class='input-group date col-md-5' id='datetimepicker1'>
+    <div class="input-group col-md-5">
+        <span class="input-group-addon">
+        <span class="glyphicon glyphicon-list"></span> 出生年份</span>
+        <select class="form-control" id="year">
+
+        </select>
+        <span class="input-group-btn">
+      </span>
+    </div>
+    <div class='input-group date col-md-5 .hidden-xs' id='datetimepicker1'>
       <span class="input-group-addon">
        <span class="glyphicon glyphicon-time"></span> 出生日期</span>
-        <input type='text' class="form-control" id="birthday"/>
+        <input type='text' class="form-control" style="padding-left: 4px; padding-right: 4px;" id="birthday"/>
         <span class="input-group-btn">
         <button class="btn btn-default" onclick="calc();">神机妙算</button>
       </span>
     </div>
+    <div class="visible-xs-block2" id="datetime-m">
+        <!--<div class="row">-->
+        <!--<div class="col-xs-6">-->
+        <!--<select class="form-control">-->
+        <!--<option>2000</option>-->
+        <!--</select>-->
+        <!--</div>-->
+        <!--<div class="col-xs-3 c3">-->
+        <!--<select class="form-control c3">-->
+        <!--<option>12</option>-->
+        <!--</select>-->
+        <!--</div>-->
+        <!--<div class="col-xs-3 c4">-->
+        <!--<select class="form-control c3">-->
+        <!--<option>13</option>-->
+        <!--</select>-->
+        <!--</div>-->
+        <!--<div class="col-xs-5">-->
+        <!--<select class="form-control">-->
+        <!--<option>13</option>-->
+        <!--</select>-->
+        <!--</div>-->
+        <!--</div>-->
+    </div>
+
     <div class='input-group date col-md-5 checkbox'>
         <label for="isLunar">
             <input type='checkbox' id="isLunar">日期为农历
@@ -209,7 +281,7 @@
         <label for="isLeap">
             <input type='checkbox' id="isLeap" disabled="disabled">农历闰月
         </label>
-        <label for="isLocal">
+        <label for="isLocal" class="col-xs-12">
             <input type='checkbox' id="isLocal" name="isLocal">使用旧版（以正月初一作为农历一年的开始）
         </label>
     </div>
@@ -221,6 +293,7 @@
             <li>出生日期精确到小时即可</li>
             <li>出生日期须在公历1900-2100年之间（超过此时段，测算不准确哟）</li>
             <li>输入日期为农历，请勾选“日期为农历”（旧版不支持农历选项），如果为闰月，请勾选“农历闰月”</li>
+            <li style="color: #e00;">当更改“年份或日期后”，需要点两次“<span class="glyphicon glyphicon-time"></span> 出生日期</span>”日期控件才会变成更改后的年份</li>
         </ul>
     </div>
     <div class="col-md-6" style="padding-left: 0;">
