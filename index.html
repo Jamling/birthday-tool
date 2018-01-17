@@ -45,7 +45,7 @@
         function calc() {
             moment.locale('zh-CN');
             var str = $('#birthday').val();
-            var birth = moment(str, 'YYYY年M月D日HH点mm分');
+            var birth = moment(str, 'YYYY年M月D日HH点');
             var start = moment('1970-01-01');
             var days = birth.diff(start, 'days');
             var offset = days + 17;
@@ -53,6 +53,45 @@
             //console.log(dayCol);
             var lunar = calendar.solar2lunar(birth.year(), birth.month() + 1, birth.date());
             //console.log(lunar);
+            $('#result').hide();
+            var isLocal = $("#isLocal").is(':checked');
+            if (isLocal) {
+                v1_local(birth, lunar);
+            } else {
+                v2(birth);
+            }
+        }
+
+        $(document).ready(function () {
+            dp = $('#datetimepicker1').datetimepicker({
+                locale: 'zh-CN',
+                minDate: moment('1901-01-01'),
+                maxDate: moment('2100-12-30'),
+                format: 'YYYY年M月D日HH点'
+            });
+
+            $("#isLunar").change(function () {
+                if ($("#isLunar").is(':checked')) {
+                    $("#isLocal").attr("disabled", "disabled");
+                    $("#isLeap").removeAttr("disabled");
+                } else {
+                    $("#isLocal").removeAttr("disabled");
+                    $("#isLeap").attr("disabled", "disabled");
+                }
+            });
+
+            $("#isLocal").change(function () {
+                if ($("#isLocal").is(':checked')) {
+                    $("#isLunar").attr("disabled", "disabled");
+                    $("#isLeap").attr("disabled", "disabled");
+                } else {
+                    $("#isLunar").removeAttr("disabled");
+                    $("#isLeap").removeAttr("disabled");
+                }
+            });
+        });
+
+        function v1_local(birth, lunar) {
             $('#o-solar').html(birth.format('YYYY年M月D日HH点 dddd'));
             $('#o-lunar')
                 .html(lunar.lYear + '年' + lunar.lMonth + '月' + lunar.lDay + '日(' + lunar.IMonthCn + lunar.IDayCn + ')');
@@ -76,14 +115,47 @@
             $('#result').show();
         }
 
-        $(document).ready(function () {
-            dp = $('#datetimepicker1').datetimepicker({
-                locale: 'zh-CN',
-                minDate: moment('1970-01-01'),
-                maxDate: moment('2100-12-30'),
-                format: 'YYYY年M月D日HH点mm分'
+        function v2(birth) {
+            var api = 'http://api.ieclipse.cn/wnl/';
+            var isLunar = $("#isLunar").is(':checked');
+            var isLeap = $("#isLeap").is(':checked')
+            var date = birth.format('YYYY-MM-DD-HH');//console.log(date);
+            api += isLunar ? 'solar' : 'lunar';
+            $.getJSON(api, {date: date, l: isLeap}, function (data) {
+                if (data) {
+                    if (data.code === 0) {
+                        v2_callback(data.data)
+                    } else {
+                        $('#o-five').html('<span class="hl">' + data.msg + '</span>');
+                    }
+                    $('#result').show();
+                }
             });
-        });
+        }
+
+        function v2_callback(data) {
+            $('#o-solar').html(data.sYear + '年' + data.sMonth + '月' + data.sDay + '日' + data.sHour + '时 星期' + data.cWeek);
+            $('#o-lunar')
+                .html(data.lYear + '年' + data.lMonth + '月' + data.lDay + '日(' + data.hzYear + '年' + data.hzMonth + '月' +data.hzDay + ')');
+            var dayStems = data.cDay.substring(0, 1);
+            var hSection = data.cHour;//StemsBranch.getHourStems(dayStems, birth.hour()) + StemsBranch.getHourBranch(birth.hour());
+            $('#o-animal').html('属<span class="hl">' + data.cAnimal + '</span>');
+            $('#o-eight').html(
+                data.cYear + ' ' + data.cMonth + ' ' + data.cDay + ' ' + hSection + ' 属<span class="hl">'
+                + StemsBranch.getStemsElement(dayStems)) + "</span>";
+            var allfive = StemsBranch.getStemsBranchElement(data.cYear) + ' '
+                + StemsBranch.getStemsBranchElement(data.cMonth) + ' ' + StemsBranch.getStemsBranchElement(data.cDay) + ' '
+                + StemsBranch.getStemsBranchElement(hSection);
+            var lose = '金木水火土';
+            for (var i = 0; i < allfive.length; i++) {
+                lose = lose.replace(allfive.charAt(i), '');
+            }
+            if (lose.length > 0) {
+                lose = ' 缺<span class="hl">' + lose + '<span>';
+            }
+            $('#o-five').html(allfive + lose);
+            $('#result').show();
+        }
     </script>
 </head>
 <body>
@@ -130,13 +202,25 @@
         <button class="btn btn-default" onclick="calc();">神机妙算</button>
       </span>
     </div>
+    <div class='input-group date col-md-5 checkbox'>
+        <label for="isLunar">
+            <input type='checkbox' id="isLunar">日期为农历
+        </label>
+        <label for="isLeap">
+            <input type='checkbox' id="isLeap" disabled="disabled">农历闰月
+        </label>
+        <label for="isLocal">
+            <input type='checkbox' id="isLocal" name="isLocal">使用旧版（以正月初一作为农历一年的开始）
+        </label>
+    </div>
     <div>
         使用说明：
         <ul>
             <li>点击“<span class="glyphicon glyphicon-time"></span> 出生日期</span>”可以弹出日期控件</li>
             <li>点击“神机妙算”，查看对应的生辰八字</li>
             <li>出生日期精确到小时即可</li>
-            <li>出生日期须在1900-2100年之间（超过此时段，测算不准确哟）</li>
+            <li>出生日期须在公历1900-2100年之间（超过此时段，测算不准确哟）</li>
+            <li>输入日期为农历，请勾选“日期为农历”（旧版不支持农历选项），如果为闰月，请勾选“农历闰月”</li>
         </ul>
     </div>
     <div class="col-md-6" style="padding-left: 0;">
