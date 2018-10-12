@@ -3,7 +3,15 @@
 
 [点击这里](http://jamling.coding.me/birthday-tool/)体验吧。
 
+# 微信小程序
+
+![microprogram](./microprogram.jpg)
+
 # 更新说明
+
+2018-10-01
+* 添加小程序
+
 2018-01-18
 * 支持输入的时间为农历
 * 使用新版万年历api, 计算更准确
