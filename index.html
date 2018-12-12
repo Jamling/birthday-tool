@@ -154,7 +154,12 @@
         }
 
         function v2(birth) {
+			var p = document.location.protocol;
             var api = 'http://api.ieclipse.cn/wnl/';
+			if (p == 'https:')
+			{
+				api = 'https://cdn.ieclipse.cn/wnl/';
+			}
             var isLunar = $("#isLunar").is(':checked');
             var isLeap = $("#isLeap").is(':checked')
             var date = birth.format('YYYY-MM-DD-HH');//console.log(date);
@@ -323,6 +328,10 @@
     </div>
 </div>
 <div class="container">
+	<div>
+		<p>生辰助手支持小程序啦，使用手机微信扫一扫即可打开，操作更方便哟</p>
+		<img src="./microprogram.jpg" alt="小程序" title="使用手机微信扫一扫，打开小程序版本"/>
+	</div>
     <div>
         <!-- JiaThis Button BEGIN -->
         <div class="jiathis_style">
